@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0
+ENV BUILD_CONFIGURATION=Debug
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true  
+ENV hotReloadProfile=aspnetcore
+ENV ASPNETCORE_ENVIRONMENT=Development
+WORKDIR /src
+COPY . /src
+RUN dotnet restore "./OpenSchool.csproj"
+CMD dotnet watch run "OpenSchool.csproj" --urls http://0.0.0.0:80
